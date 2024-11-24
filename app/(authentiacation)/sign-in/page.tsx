@@ -1,62 +1,81 @@
-"use client"
+"use client";
 
-import { IUser } from "@/app/_types/IUser"
-import { ChangeEvent, FormEvent, useState } from "react"
+import { IUser } from "@/app/_types/IUser";
+import { ChangeEvent, FormEvent, useState } from "react";
 
 export default function SignIn() {
-  const [user, setUser] = useState<IUser>({ username: "", password: "" })
-  const [error, setError] = useState<string>("")
-  const [loading, setLoading] = useState<boolean>(false)
+  const [user, setUser] = useState<IUser>({ username: "", password: "" });
+  const [error, setError] = useState<string>("");
+  const [loading, setLoading] = useState<boolean>(false);
 
   function handleUserChange(event: ChangeEvent<HTMLInputElement>) {
-    const { name, value } = event.target
-    setUser((prevData) => ({ ...prevData, [name]: value }))
+    const { name, value } = event.target;
+    setUser((prevData) => ({ ...prevData, [name]: value }));
   }
 
-
-
   function onSubmit(event: FormEvent) {
-    event.preventDefault()
+    event.preventDefault();
 
     if (!user.username || !user.password) {
-      setError("Both username and password are required.")
-      return
+      setError("Both username and password are required.");
+      return;
     }
 
-    setLoading(true)
-    setError("")
+    setLoading(true);
+    setError("");
 
-  // Init
-  const timeout: number = 10_000
-  const controller = new AbortController()
-  const signal = controller.signal
+    // Init
+    const timeout: number = 10_000;
+    const controller = new AbortController();
+    const signal = controller.signal;
 
-// Set up the timeout
-const timeoutId = setTimeout(() => {
-    controller.abort() // Abort the fetch request
-  }, timeout)
+    // Set up the timeout
+    const timeoutId = setTimeout(() => {
+      controller.abort(); // Abort the fetch request
+    }, timeout);
 
-    fetch("http://localhost:8080/user/login", {
+    fetch("http://localhost:8080/auth/login", {
       method: "POST",
-      headers: { "Content-Type": "application/json" },
+      headers: {
+        "Content-Type": "application/json",
+      },
       body: JSON.stringify(user),
       //credentials: "include",
       signal,
     })
       .then((response) => {
-        clearTimeout(timeoutId)
-        setLoading(false)
+        clearTimeout(timeoutId);
+        setLoading(false);
+
         if (response.ok) {
-          console.log("Login successful")
+          console.log("Login successful");
+          return response.json();
         } else {
-          setError("Invalid username or password.")
+          return response.json().then((errData) => {
+            setError("Invalid username or password.");
+            throw new Error(errData.message || "Invalid username or password");
+          });
         }
       })
-      
-      .catch(() => {
-        setLoading(false)
-        setError("An error occurred. Please try again.")
+      .then((data) => {
+        const { token } = data;
+
+        if (!token) {
+          setError("No token recieved from server.");
+          return;
+        }
+        //localStorage.setItem("accessToken", token)
+        sessionStorage.setItem("accessToken", token)
+        
       })
+      .catch(() => {
+        if (error.name === "AbortError") {
+          setError("Request timed out. Please try again.");
+        } else {
+          setError("An error occurred. Please try again.");
+        }
+        setLoading(false);
+      });
   }
   return (
     <div className="p-4">
@@ -93,5 +112,5 @@ const timeoutId = setTimeout(() => {
         </button>
       </form>
     </div>
-  )
+  );
 }
