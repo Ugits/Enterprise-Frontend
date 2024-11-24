@@ -66,21 +66,42 @@ export default function Home() {
   }, []);
 
   return (
-    <main>
-      <div>
-        <p className="font-bold text-xl">User Credentials</p>
-        {loading && <p>Loading user details...</p>}
-        {error && <p className="text-red-500">Error: {error}</p>}
-        {user === null ? (
-          <p>Här va det tomt</p>
-        ) : (
-          <>
-            <p>Username: {user.username}</p>
-            <p>Password: {user.password}</p>
-            {/* Add other user details here */}
-          </>
-        )}
-      </div>
-    </main>
+    <main className="min-h-screen flex flex-col items-center justify-center">
+    <div className="bg-slate-900 shadow-xl rounded-lg p-6 w-full max-w-md border-2 border-orange-700">
+      <p className="font-bold text-2xl mb-4 text-center text-gray-400">
+        User Credentials
+      </p>
+
+      {/* Loading State */}
+      {loading && (
+        <p className="text-gray-400 font-medium text-center">
+          Loading user details...
+        </p>
+      )}
+
+      {/* Error State */}
+      {error && (
+        <p className="text-red-500 font-medium text-center">
+          Error: {error}
+        </p>
+      )}
+
+      {/* User Details */}
+      {user === null ? (
+        <p className="text-gray-400 text-center">null</p>
+      ) : (
+        <div className="mt-4 space-y-3">
+          <div className="flex items-center">
+            <span className="font-medium text-gray-400">Username:</span>
+            <span className="text-s text-gray-500 p-4">{user.username}</span>
+          </div>
+          <div className="flex items-center">
+            <span className="font-medium text-gray-400">Password:</span>
+            <span className="text-s text-gray-500 truncate max-w-[80%] p-4">{user.password}</span>
+          </div>
+        </div>
+      )}
+    </div>
+  </main>
   );
 }

@@ -2,11 +2,14 @@
 
 import { IUser } from "@/app/_types/IUser";
 import { ChangeEvent, FormEvent, useState } from "react";
+import { useRouter } from "next/navigation";
 
 export default function SignIn() {
   const [user, setUser] = useState<IUser>({ username: "", password: "" });
   const [error, setError] = useState<string>("");
   const [loading, setLoading] = useState<boolean>(false);
+
+    const router = useRouter()
 
   function handleUserChange(event: ChangeEvent<HTMLInputElement>) {
     const { name, value } = event.target;
@@ -64,8 +67,8 @@ export default function SignIn() {
           setError("No token recieved from server.");
           return;
         }
-        //localStorage.setItem("accessToken", token)
         sessionStorage.setItem("accessToken", token);
+        router.push("/user/credentials")
       })
       .catch(() => {
         if (error.name === "AbortError") {
