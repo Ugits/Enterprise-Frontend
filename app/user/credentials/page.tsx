@@ -1,5 +1,6 @@
 "use client";
 
+import { useRouter } from "next/navigation";
 import { useEffect, useState } from "react";
 
 interface IUserCredentials {
@@ -12,9 +13,16 @@ export default function Home() {
   const [error, setError] = useState("");
   const [loading, setLoading] = useState<boolean>(false);
 
+  const router = useRouter();
+
+  const handleLogout = () => {
+    sessionStorage.removeItem("accessToken"); // Clear token
+    router.push("/"); // Redirect to login
+  };
+
   useEffect(() => {
     const token = sessionStorage.getItem("accessToken");
-    
+
     if (!token) {
       setError("No access token found. Please log in.");
       return;
@@ -28,7 +36,6 @@ export default function Home() {
     const signal = controller.signal;
 
     const timeoutId = setTimeout(() => controller.abort(), timeout);
-
 
     fetch("http://localhost:8080/user/test", {
       headers: {
@@ -66,42 +73,53 @@ export default function Home() {
   }, []);
 
   return (
-    <main className="min-h-screen flex flex-col items-center justify-center">
-    <div className="bg-slate-900 shadow-xl rounded-lg p-6 w-full max-w-md border-2 border-orange-700">
-      <p className="font-bold text-2xl mb-4 text-center text-gray-400">
-        User Credentials
-      </p>
+    <main className="min-h-screen flex flex-col items-center ">
+      {/* Top Bar with Logout Button */}
+      <div className="w-full flex justify-end items-center p-7 shadow-2xl border-black border-">
+        <button
+          onClick={handleLogout}
+          className="text-sm px-4 py-2 bg-orange-500 rounded hover:bg-orange-600 focus:outline-none focus:ring-2 focus:ring-orange-400"
+        >
+          Logout
+        </button>
+      </div>
 
-      {/* Loading State */}
-      {loading && (
-        <p className="text-gray-400 font-medium text-center">
-          Loading user details...
+      {/* Credentials Card */}
+      <div className="bg-slate-900 shadow-xl rounded-lg p-6 w-full max-w-md border-2 border-orange-700">
+        <p className="font-bold text-2xl mb-4 text-center text-gray-400">
+          User Credentials
         </p>
-      )}
 
-      {/* Error State */}
-      {error && (
-        <p className="text-red-500 font-medium text-center">
-          Error: {error}
-        </p>
-      )}
+        {/* Loading State */}
+        {loading && (
+          <p className="text-gray-400 font-medium text-center">
+            Loading user details...
+          </p>
+        )}
 
-      {/* User Details */}
-      {user === null ? (
-        <p className="text-gray-400 text-center">null</p>
-      ) : (
-        <div className="mt-4 space-y-3">
-          <div className="flex items-center">
-            <span className="font-medium text-gray-400">Username:</span>
-            <span className="text-s text-gray-500 p-4">{user.username}</span>
+        {/* Error State */}
+        {error && (
+          <p className="text-red-500 font-medium text-center">Error: {error}</p>
+        )}
+
+        {/* User Details */}
+        {user === null ? (
+          <p className="text-gray-400 text-center">null</p>
+        ) : (
+          <div className="mt-4 space-y-3">
+            <div className="flex items-center">
+              <span className="font-medium text-gray-400">Username:</span>
+              <span className="text-s text-gray-500 p-4">{user.username}</span>
+            </div>
+            <div className="flex items-center">
+              <span className="font-medium text-gray-400">Password:</span>
+              <span className="text-s text-gray-500 truncate max-w-[80%] p-4">
+                {user.password}
+              </span>
+            </div>
           </div>
-          <div className="flex items-center">
-            <span className="font-medium text-gray-400">Password:</span>
-            <span className="text-s text-gray-500 truncate max-w-[80%] p-4">{user.password}</span>
-          </div>
-        </div>
-      )}
-    </div>
-  </main>
+        )}
+      </div>
+    </main>
   );
 }
