@@ -4,8 +4,9 @@ import { useRouter } from "next/navigation";
 import { useEffect, useState } from "react";
 
 interface IUserCredentials {
-  username: string;
-  password: string;
+  username: string
+  password: string
+  role: string
 }
 
 export default function Home() {
@@ -37,7 +38,7 @@ export default function Home() {
 
     const timeoutId = setTimeout(() => controller.abort(), timeout);
 
-    fetch("http://localhost:8080/user/test", {
+    fetch("http://localhost:8080/user/credentials", {
       headers: {
         Authorization: `Bearer ${token}`,
       },
@@ -107,6 +108,12 @@ export default function Home() {
           <p className="text-gray-400 text-center">null</p>
         ) : (
           <div className="mt-4 space-y-3">
+            <div className="flex items-center">
+              <span className="font-medium text-gray-400">Role:</span>
+              <span className="text-s text-gray-500 truncate max-w-[80%] p-4">
+                {user.role}
+              </span>
+            </div>
             <div className="flex items-center">
               <span className="font-medium text-gray-400">Username:</span>
               <span className="text-s text-gray-500 p-4">{user.username}</span>
