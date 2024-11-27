@@ -75,7 +75,7 @@ export default function Home() {
   return (
     <main className="min-h-screen flex flex-col items-center ">
       {/* Top Bar with Logout Button */}
-      <div className="w-full flex justify-end items-center p-7 shadow-2xl border-black border-">
+      <div>
         <button
           onClick={handleLogout}
           className="text-sm px-4 py-2 bg-orange-500 rounded hover:bg-orange-600 focus:outline-none focus:ring-2 focus:ring-orange-400"
