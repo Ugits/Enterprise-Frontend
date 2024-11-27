@@ -4,6 +4,11 @@ import { IUser } from "@/app/_types/IUser";
 import { ChangeEvent, FormEvent, useState } from "react";
 import { useRouter } from "next/navigation";
 
+interface authResponse {
+  token: string;
+  role: string;
+}
+
 export default function SignIn() {
   const [user, setUser] = useState<IUser>({ username: "", password: "" });
   const [error, setError] = useState<string>("");
@@ -60,15 +65,30 @@ export default function SignIn() {
           });
         }
       })
-      .then((data) => {
-        const { token } = data;
+      .then((data: authResponse) => {
+        const token = data.token;
+        const role = data.role;
+
+        console.log(token);
+        console.log(role);
 
         if (!token) {
           setError("No token recieved from server.");
           return;
         }
         sessionStorage.setItem("accessToken", token);
-        router.push("/user/credentials");
+
+        switch (role) {
+            case "USER":
+              router.push("/user");
+              break;
+            case "ADMIN":
+              router.push("/admin");
+              break;
+            default:
+              console.error(`Unexpected role: ${role}`);
+              router.push("/");
+          }
       })
       .catch((error) => {
         if (error.name === "AbortError") {
