@@ -1,25 +1,20 @@
 "use client";
 
-import { useRouter } from "next/navigation";
 import { useEffect, useState } from "react";
 
 interface IUserCredentials {
-  username: string
-  password: string
-  role: string
+  username: string;
+  password: string;
+  role: string;
 }
 
-export default function Home() {
+export default function UserCredentials() {
   const [user, setUser] = useState<IUserCredentials | null>(null);
   const [error, setError] = useState("");
   const [loading, setLoading] = useState<boolean>(false);
+  const [color, setColor] = useState("");
 
-  const router = useRouter();
 
-  const handleLogout = () => {
-    sessionStorage.removeItem("accessToken"); // Clear token
-    router.push("/"); // Redirect to login
-  };
 
   useEffect(() => {
     const token = sessionStorage.getItem("accessToken");
@@ -42,7 +37,6 @@ export default function Home() {
       headers: {
         Authorization: `Bearer ${token}`,
       },
-      credentials: "include", // Add this line if needed
       signal,
     })
       .then((response) => {
@@ -50,13 +44,16 @@ export default function Home() {
 
         if (!response.ok) {
           return response.json().then((errData) => {
-            throw new Error(errData.message || "Failed to fetch user details");
+            throw new Error(errData.message);
           });
         }
         return response.json();
       })
       .then((data: IUserCredentials) => {
         setUser(data);
+
+        data.username.match("Aldina") && setColor("bg-rose-400");
+        data.username.match("Tove") && setColor("bg-violet-500");
       })
       .catch((err) => {
         if (err.name === "AbortError") {
@@ -74,17 +71,8 @@ export default function Home() {
   }, []);
 
   return (
-    <main className="min-h-screen flex flex-col items-center ">
-      {/* Top Bar with Logout Button */}
-      <div>
-        <button
-          onClick={handleLogout}
-          className="text-sm px-4 py-2 bg-orange-500 rounded hover:bg-orange-600 focus:outline-none focus:ring-2 focus:ring-orange-400"
-        >
-          Logout
-        </button>
-      </div>
-
+    <div className={`min-h-screen flex flex-col items-center ${color}`}>
+      
       {/* Credentials Card */}
       <div className="bg-slate-900 shadow-xl rounded-lg p-6 w-full max-w-md border-2 border-orange-700">
         <p className="font-bold text-2xl mb-4 text-center text-gray-400">
@@ -127,6 +115,6 @@ export default function Home() {
           </div>
         )}
       </div>
-    </main>
+    </div>
   );
 }
