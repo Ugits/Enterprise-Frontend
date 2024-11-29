@@ -52,7 +52,7 @@ export default function DeleteUser() {
 
   return (
     <div>
-      <div className="bg-slate-900 shadow-xl rounded-lg p-6 w-full max-w-md border-2 border-red-700">
+      <div className="bg-slate-900 shadow-xl rounded-lg p-6 w-full max-w-md border-2 border-yellow-300">
         <p className="font-bold text-2xl mb-4 text-center text-gray-400">
           Delete User
         </p>

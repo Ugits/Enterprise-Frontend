@@ -12,7 +12,7 @@ export default function UserCredentials() {
   const [user, setUser] = useState<IUserCredentials | null>(null);
   const [error, setError] = useState("");
   const [loading, setLoading] = useState<boolean>(false);
-  const [color, setColor] = useState("");
+  const [borderColor, setBorderColor] = useState("border-orange-700");
 
 
 
@@ -39,29 +39,53 @@ export default function UserCredentials() {
       },
       signal,
     })
-      .then((response) => {
+      .then(async (response) => {
         clearTimeout(timeoutId);
-
+    
+        const text = await response.text();
         if (!response.ok) {
-          return response.json().then((errData) => {
-            throw new Error(errData.message);
-          });
+          let errorMessage = "An error occurred";
+          if (text) {
+            try {
+              const errData = JSON.parse(text);
+              errorMessage = errData.message || errorMessage;
+            } catch (e) {
+              // Response is not JSON
+              errorMessage = text;
+            }
+          }
+          throw new Error(errorMessage);
         }
-        return response.json();
+    
+        if (!text) {
+          throw new Error("No data received from server.");
+        }
+    
+        let data: IUserCredentials;
+        try {
+          data = JSON.parse(text);
+        } catch (e) {
+          throw new Error("Failed to parse response from server.");
+        }
+        return data;
       })
       .then((data: IUserCredentials) => {
         setUser(data);
+    
+        
+        data.username.match("Aldina") && setBorderColor("border-rose-400")
+        data.username.match("Tove") && setBorderColor("border-violet-500")
+        data.username.match("Robel") && setBorderColor("border-teal-600")
+        
+        data.role.match("ADMIN") && setBorderColor("border-yellow-300")
 
-        data.username.match("Aldina") && setColor("bg-rose-400");
-        data.username.match("Tove") && setColor("bg-violet-500");
+
       })
       .catch((err) => {
         if (err.name === "AbortError") {
           setError("Request timed out. Please try again.");
         } else {
-          setError(
-            err.message || "An error occurred while fetching user details"
-          );
+          setError(err.message || "An error occurred while fetching user details");
         }
         console.error(err);
       })
@@ -71,10 +95,10 @@ export default function UserCredentials() {
   }, []);
 
   return (
-    <div className={`items-center ${color}`}>
+    <div>
       
       {/* Credentials Card */}
-      <div className="bg-slate-900 shadow-xl rounded-lg p-6 w-full max-w-md border-2 border-orange-700">
+      <div className={`bg-slate-900 shadow-xl rounded-lg p-6 w-full max-w-md border-2 ${borderColor}`}>
         <p className="font-bold text-2xl mb-4 text-center text-gray-400">
           User Credentials
         </p>
