@@ -5,7 +5,11 @@ const LogoutButton = () => {
   const router = useRouter();
 
   const handleLogout = () => {
-    sessionStorage.clear()
+    sessionStorage.clear();
+
+    const event = new Event("authChange");
+    window.dispatchEvent(event);
+
     router.push("/");
   };
 
@@ -20,5 +24,4 @@ const LogoutButton = () => {
     </div>
   );
 };
-
-export default LogoutButton;
+export default LogoutButton

@@ -3,7 +3,7 @@
 import { useState } from "react";
 import { useRouter } from "next/navigation";
 import { IUser } from "@/app/_types/IUser";
-import { IAuthResponse } from "../_types/IAuthResponse"
+import { IAuthResponse } from "../_types/IAuthResponse";
 
 export default function LoginForm() {
   const [user, setUser] = useState<IUser>({ username: "", password: "" });
@@ -69,9 +69,12 @@ export default function LoginForm() {
 
         role.match("USER") && router.push("/user");
         role.match("ADMIN") && router.push("/admin");
+
+        const event = new Event("authChange");
+        window.dispatchEvent(event);
       })
       .catch((error) => {
-        console.log(error)
+        console.log(error);
         if (error.name === "AbortError") {
           setError("Request timed out. Please try again. ABORT");
         } else {

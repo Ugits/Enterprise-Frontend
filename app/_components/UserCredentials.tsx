@@ -71,7 +71,7 @@ export default function UserCredentials() {
   }, []);
 
   return (
-    <div className={`min-h-screen flex flex-col items-center ${color}`}>
+    <div className={`items-center ${color}`}>
       
       {/* Credentials Card */}
       <div className="bg-slate-900 shadow-xl rounded-lg p-6 w-full max-w-md border-2 border-orange-700">

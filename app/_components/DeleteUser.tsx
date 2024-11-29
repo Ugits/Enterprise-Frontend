@@ -51,7 +51,7 @@ export default function DeleteUser() {
   };
 
   return (
-    <div className="min-h-screen flex flex-col items-center justify-center">
+    <div>
       <div className="bg-slate-900 shadow-xl rounded-lg p-6 w-full max-w-md border-2 border-red-700">
         <p className="font-bold text-2xl mb-4 text-center text-gray-400">
           Delete User

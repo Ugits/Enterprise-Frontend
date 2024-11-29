@@ -1,14 +1,14 @@
-import React from 'react'
-import UserCredentials from '../_components/UserCredentials';
+"use client";
+import UserCredentials from "../_components/UserCredentials";
 
 const page = () => {
-    return (
-        <main>
-          <div> 
-          <UserCredentials />
-          </div>
-        </main>
-      );
-}
+  return (
+    <main className="min-h-screen flex flex-col items-center justify-center">
+      <div className="p-4">
+        <UserCredentials />
+      </div>
+    </main>
+  );
+};
 
-export default page
+export default page;
