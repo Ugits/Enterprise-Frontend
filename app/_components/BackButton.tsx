@@ -9,7 +9,7 @@ const BackButton = () => {
     <div>
       <button 
       onClick={router.back} 
-      className="px-4 py-2 bg-emerald-900 hover:bg-emerald-700 rounded">
+      className="px-4 py-2 bg-emerald-900 hover:bg-emerald-700 rounded text-shadow-lg">
         Go Back
       </button>
     </div>

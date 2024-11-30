@@ -17,8 +17,8 @@ export default function Home() {
   };
 
   return (
-    <main className="flex flex-col items-center justify-center pt-20">
-      <div className="text-center">
+    <main className="flex flex-col items-center justify-center pt-20 ">
+      <div className="text-center text-shadow-lg">
         <h1 className="text-4xl font-bold mb-4">Welcome to 5eSpells</h1>
         <p className="text-base text-gray-700 mb-4">
           Please log in to access your account details.
@@ -29,7 +29,7 @@ export default function Home() {
         {/* Create New Account Button */}
         <button
           onClick={handleToggleSignupForm}
-          className="px-6 py-2 bg-green-500 hover:bg-green-600 text-white font-semibold rounded"
+          className="px-6 py-2 bg-green-500 hover:bg-green-600 text-white font-semibold rounded text-shadow-lg"
           >
           {showSignupForm ? "Hide Signup Form" : "Create New Account"}
         </button>

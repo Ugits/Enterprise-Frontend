@@ -72,12 +72,13 @@ export default function UserCredentials() {
       .then((data: IUserCredentials) => {
         setUser(data);
     
-        
-        data.username.match("Aldina") && setBorderColor("border-rose-400")
-        data.username.match("Tove") && setBorderColor("border-violet-500")
         data.username.match("Robel") && setBorderColor("border-teal-600")
         
         data.role.match("ADMIN") && setBorderColor("border-yellow-300")
+        
+        data.username.match("Tove") && setBorderColor("border-violet-500")
+        data.username.match("Aldina") && setBorderColor("border-rose-400")
+        
 
 
       })
@@ -98,7 +99,7 @@ export default function UserCredentials() {
     <div>
       
       {/* Credentials Card */}
-      <div className={`bg-slate-900 shadow-xl rounded-lg p-6 w-full max-w-md border-2 ${borderColor}`}>
+      <div className={`bg-slate-900 shadow-xl rounded-lg p-6 w-full max-w-md border-2 ${borderColor} text-shadow-lg`}>
         <p className="font-bold text-2xl mb-4 text-center text-gray-400">
           User Credentials
         </p>

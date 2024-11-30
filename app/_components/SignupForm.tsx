@@ -62,7 +62,7 @@ const SignupForm = ({ onSignupSuccess }: SignupFormProps) => {
   return (
     <form
       onSubmit={handleSignup}
-      className="mt-4 p-4 bg-slate-900 shadow-xl rounded-lg  border-green-500 border-4"
+      className="mt-4 p-4 bg-slate-900 shadow-xl rounded-lg  border-green-500 border-4c text-shadow-lg"
     >
       {/* Error Message */}
       {error && (
@@ -107,7 +107,7 @@ const SignupForm = ({ onSignupSuccess }: SignupFormProps) => {
 
       {/* Role Selection */}
       {currentUserRole === "ADMIN" && (
-        <div className="mb-4">
+        <div className="mb-4 text-shadow-lg">
           <label className="flex items-center">
             <input
               type="checkbox"
@@ -125,8 +125,8 @@ const SignupForm = ({ onSignupSuccess }: SignupFormProps) => {
         type="submit"
         disabled={loading}
         className={`w-full py-2 px-4 rounded ${
-          loading ? "bg-gray-400" : "bg-blue-500 hover:bg-blue-600"
-        } text-white font-semibold`}
+          loading ? "bg-gray-400 text-shadow-lg" : "bg-blue-500 hover:bg-blue-600"
+        } text-white font-semibold text-shadow-lg`}
       >
         {loading ? "Creating Account..." : "Sign Up"}
       </button>

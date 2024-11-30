@@ -87,7 +87,7 @@ export default function LoginForm() {
   }
 
   return (
-    <form onSubmit={handleSubmit} className="w-full max-w-sm">
+    <form onSubmit={handleSubmit} className="w-full max-w-sm text-shadow-lg">
       <div className="flex flex-col space-y-4">
         {/* Username */}
         <div>
@@ -131,8 +131,8 @@ export default function LoginForm() {
           disabled={loading}
           className={`px-4 py-2 rounded ${
             loading
-              ? "bg-gray-400 cursor-not-allowed"
-              : "bg-blue-500 hover:bg-blue-600 text-white"
+              ? "bg-gray-400 cursor-not-allowed text-shadow-lg"
+              : "bg-blue-500 hover:bg-blue-600 text-white text-shadow-lg"
           }`}
         >
           {loading ? "Signing in..." : "Sign In"}
