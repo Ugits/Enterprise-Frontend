@@ -3,7 +3,7 @@ import UserCredentials from "../_components/UserCredentials";
 import SpellTable from "../_components/SpellTable"
 const page = () => {
   return (
-    <main className="min-h-screen flex flex-row items-center justify-center">
+    <main className="min-h-screen flex flex-row">
       <div className="w-1/4 h-[20%] border-r-2 min-h-screen">
         <div className="p-6 border-b-2">
           <UserCredentials />

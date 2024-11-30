@@ -1,0 +1,95 @@
+/* src/components/SpellCard.css */
+.spell-card {
+  position: relative;
+  width: 300px; /* Width of the card */
+  height: 450px; /* Height of the card */
+
+  background-image: url('../../public/parchment-style-images-for-custom-notes-v0-q3lqg04jvm9b1.jpg'); /* Background color of the card */
+  background-size: cover;
+  background-position: center;
+  background-repeat: no-repeat;
+
+  border: 15px solid rgb(17, 13, 13); /* Black border */
+  border-top-left-radius: 55px;
+  border-top-right-radius: 20px;
+  border-bottom-left-radius: 20px; /* Larger bottom corners */
+  border-bottom-right-radius: 55px;
+
+  /* Combine both inner and outer box shadows */
+  box-shadow: 
+    0 4px 8px rgba(0, 0, 0, 0.2); /* Outer shadow for depth */
+
+  overflow: hidden; /* Ensures children don't overflow the card */
+  display: flex;
+  flex-direction: column;
+  font-family: "Beleren Bold", "Garamond", serif; /* MTG-style font */
+  margin: 10px; /* Space between cards */
+}
+
+.spell-header {
+  display: flex;
+  justify-content: space-between;
+  padding: 10px;
+  margin-left: 20px;
+  
+  /*background-color: #222; /* Dark background for header */
+  color: rgb(0, 0, 0); /* Text color for header */
+  position: relative; /* Ensure this is above the card's background */
+  top: 5px;
+}
+
+.spell-name {
+  font-size: 20px; /* Font size for spell name */
+  margin: 0; /* Remove default margin */
+}
+
+.spell-level {
+  background-color: rgba(255, 255, 255, 0.2); /* Light background for level */
+  font-size: 18px; /* Font size for header */
+  padding: 3px 6px; /* Padding for level display */
+  border-radius: 4px; /* Rounded corners for level */
+}
+
+.spell-image {
+  border: inset 2px black;
+  margin-left: 4%;
+  width: 92%; /* Ensure it fills the width of the parent */
+  height: 200px; /* Auto height maintains aspect ratio */
+  object-fit: cover; /* Cover the container without distortion */
+  display: block; /* Ensure no inline spacing is applied */
+}
+
+.spell-type {
+  text-align: center; /* Center text for type */
+  background-color: transparent; /* Light gray background for type */
+  font-weight: bold; /* Bold text for type */
+  color: #000;
+  padding: 5px 0; /* Padding for type display */
+  border-bottom: 1px solid #000; /* Bottom border for type */
+  margin-left: 10px;
+  margin-right: 10px;
+}
+
+.spell-description {
+  padding: 10px; /* Padding for description */
+  flex-grow: 1; /* Allow to grow */
+  font-size: 14px; /* Font size for description */
+  color: #333; /* Text color for description */
+  background-color: transparent; /* White background for description */
+  border-bottom: 1px solid #000; /* Bottom border for description */
+  margin-left: 10px;
+  margin-right: 10px;
+}
+
+.spell-flavor-text {
+  text-align: center;
+  padding: 10px; /* Padding for flavor text */
+  font-size: 12px; /* Font size for flavor text */
+  color: #303030; /* Light gray color for flavor text */
+  background-color: transparent; /* Light background for flavor text */
+  font-style: italic; /* Italic style for flavor text */
+  margin-left: 10px;
+  margin-right: 10px;
+  border-bottom-left-radius: 30%;
+  border-bottom-right-radius: 30%;
+}
