@@ -6,7 +6,7 @@ import { useState } from "react";
 
 const SpellList = () => {
     //const { spellList } = useSpellStore();
-    const [spellList, setSpelllist] = useState<ISpell[]>(null)
+    const [spellList, setSpelllist] = useState<ISpell[] | null>(null)
 
 
     return (
