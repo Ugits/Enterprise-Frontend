@@ -1,7 +1,7 @@
 "use client";
 import { useState } from "react";
-import { SignupRequest } from "../_types/SignupRequest";
-import { SignupResponse } from "../_types/SignupResponse";
+import { SignupRequest } from "../_types/ISignupRequest";
+import { SignupResponse } from "../_types/ISignupResponse";
 
 interface SignupFormProps {
   onSignupSuccess: () => void;

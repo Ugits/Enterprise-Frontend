@@ -1,4 +1,4 @@
-export interface SignupRequest{
+export interface ISignupResponse {
     username: string
     password: string
     role: string

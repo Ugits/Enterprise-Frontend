@@ -1,6 +1,4 @@
-import { SpellDescription } from "./ISpellDescription";
-
-export interface Spell {
+export interface ISpell {
   index: string;
   name: string;
   description: SpellDescription[];
@@ -12,3 +10,7 @@ export interface Spell {
   casting_time: string;
 }
 
+export interface SpellDescription {
+  id: number;
+  description: string;
+}

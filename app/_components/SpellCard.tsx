@@ -1,5 +1,5 @@
 import "./SpellCard.css"; // Importing CSS for styling
-import { SpellDescription } from "../_types/ISpellDescription";
+import { SpellDescription } from "../_types/ISpell";
 
 interface SpellCardProps {
   imageSrc: string; // Path to the spell image

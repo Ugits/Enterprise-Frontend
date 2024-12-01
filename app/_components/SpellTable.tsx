@@ -1,16 +1,20 @@
 import SpellCard from "./SpellCard";
-import { spellList } from "../_data/spellListMOCK";
+import {ISpell} from "../_types/ISpell"
+import { spellListMOCK } from "../_data/spellListMOCK";
+import { useState } from "react";
 
 
 const SpellList = () => {
     //const { spellList } = useSpellStore();
-  
+    const [spellList, setSpelllist] = useState<ISpell[]>(null)
+
+
     return (
-      <div>
+      <div className="p-6">
         <div
           style={{ display: "flex", flexWrap: "wrap", justifyContent: "center" }}
         >
-          {spellList.map((spell) => (
+          {spellListMOCK.map((spell: ISpell) => (
             <SpellCard
               key={spell.index}
               imageSrc={`spell-images/${spell.index}.jpg`}

@@ -1,6 +1,6 @@
-import { Spell } from "../_types/ISpell"; // Adjust the import path as necessary
+import { ISpell } from "../_types/ISpell"; // Adjust the import path as necessary
 
-export const spellList: Spell[] = [
+export const spellListMOCK: ISpell[] = [
   {
     index: "fireball",
     name: "Fireball",
