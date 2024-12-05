@@ -1,12 +1,10 @@
 "use client";
 
-import { useState } from "react";
-import SignupForm from "./_components/SignupForm";
-import { useRouter } from "next/navigation";
+import React, { useState } from "react";
 
+import SignupForm from "./_components/SignupForm";
 export default function Home() {
   const [showSignupForm, setShowSignupForm] = useState<boolean>(false);
-  const router = useRouter();
 
   const handleToggleSignupForm = () => {
     setShowSignupForm((prev) => !prev);
@@ -23,17 +21,15 @@ export default function Home() {
         <p className="text-base text-gray-700 mb-4">
           Please log in to access your account details.
         </p>
-        </div>
-        <div className="p-5">
-
+      </div>
+      <div className="p-5">
         {/* Create New Account Button */}
         <button
           onClick={handleToggleSignupForm}
           className="px-6 py-2 bg-green-500 hover:bg-green-600 text-white font-semibold rounded text-shadow-lg"
-          >
+        >
           {showSignupForm ? "Hide Signup Form" : "Create New Account"}
         </button>
-          
       </div>
       <div>
         {/* Signup Form */}

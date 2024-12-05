@@ -1,5 +1,4 @@
 "use client";
-
 import { useEffect, useState } from "react";
 
 interface IUserCredentials {
@@ -50,7 +49,6 @@ export default function UserCredentials() {
               const errData = JSON.parse(text);
               errorMessage = errData.message || errorMessage;
             } catch (e) {
-              // Response is not JSON
               errorMessage = text;
             }
           }

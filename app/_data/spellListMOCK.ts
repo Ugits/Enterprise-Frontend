@@ -1,12 +1,25 @@
-import { ISpell } from "../_types/ISpell"; // Adjust the import path as necessary
+import { ISpell } from "../_types/ISpell";
 
 export const spellListMOCK: ISpell[] = [
   {
     index: "fireball",
     name: "Fireball",
+    classes: [
+      {
+        id: 1,
+        index: "wizard",
+        name: "Wizard",
+      },
+      {
+        id: 2,
+        index: "sorcerer",
+        name: "Sorcerer",
+      },
+    ],
     description: [
       {
         id: 1,
+
         description:
           "A bright streak flashes from your pointing finger to a point you choose within range and then blossoms with a low roar into an explosion of flame.",
       },
@@ -26,6 +39,33 @@ export const spellListMOCK: ISpell[] = [
   {
     index: "mage-hand",
     name: "Mage Hand",
+    classes: [
+      {
+        id: 1,
+        index: "wizard",
+        name: "Wizard",
+      },
+      {
+        id: 2,
+        index: "sorcerer",
+        name: "Sorcerer",
+      },
+      {
+        id: 3,
+        index: "bard",
+        name: "Bard",
+      },
+      {
+        id: 4,
+        index: "warlock",
+        name: "Warlock",
+      },
+      {
+        id: 5,
+        index: "cleric",
+        name: "Cleric",
+      },
+    ],
     description: [
       {
         id: 1,
@@ -38,7 +78,7 @@ export const spellListMOCK: ISpell[] = [
           "The hand is invisible and can perform simple tasks such as lifting, carrying, manipulating objects, opening unlocked doors or containers, stowing or retrieving items from open containers, or pouring the contents out of a vial.",
       },
     ],
-    level: 0, // Cantrips are often represented as level 0
+    level: 0,
     range: "30 feet",
     ritual: false,
     duration: "1 minute",
@@ -48,6 +88,48 @@ export const spellListMOCK: ISpell[] = [
   {
     index: "detect-magic",
     name: "Detect Magic",
+    classes: [
+      {
+        id: 1,
+        index: "bard",
+        name: "Bard",
+      },
+      {
+        id: 2,
+        index: "cleric",
+        name: "Cleric",
+      },
+      {
+        id: 3,
+        index: "druid",
+        name: "Druid",
+      },
+      {
+        id: 4,
+        index: "paladin",
+        name: "Paladin",
+      },
+      {
+        id: 5,
+        index: "ranger",
+        name: "Ranger",
+      },
+      {
+        id: 6,
+        index: "sorcerer",
+        name: "Sorcerer",
+      },
+      {
+        id: 7,
+        index: "warlock",
+        name: "Warlock",
+      },
+      {
+        id: 8,
+        index: "wizard",
+        name: "Wizard",
+      },
+    ],
     description: [
       {
         id: 1,

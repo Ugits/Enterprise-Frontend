@@ -1,14 +1,14 @@
 "use client";
 import { useState } from "react";
-import { SignupRequest } from "../_types/ISignupRequest";
-import { SignupResponse } from "../_types/ISignupResponse";
+import { ISignupRequest } from "../_types/ISignupRequest";
+import { ISignupResponse } from "../_types/ISignupResponse";
 
 interface SignupFormProps {
   onSignupSuccess: () => void;
 }
 
 const SignupForm = ({ onSignupSuccess }: SignupFormProps) => {
-  const [user, setUser] = useState<SignupRequest>({
+  const [user, setUser] = useState<ISignupRequest>({
     username: "",
     password: "",
     role: "USER",
@@ -23,7 +23,7 @@ const SignupForm = ({ onSignupSuccess }: SignupFormProps) => {
     setLoading(true);
     setError("");
 
-    fetch("http://localhost:8080/user/signup", {
+    fetch("http://localhost:8080/auth/register", {
       method: "POST",
       headers: {
         "Content-Type": "application/json",
@@ -39,7 +39,7 @@ const SignupForm = ({ onSignupSuccess }: SignupFormProps) => {
         }
         return response.json();
       })
-      .then((data: SignupResponse) => {
+      .then((data: ISignupResponse) => {
         alert("Account created successfully!");
         onSignupSuccess();
       })

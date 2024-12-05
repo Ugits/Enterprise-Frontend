@@ -1,7 +1,9 @@
+
 export interface ISpell {
   index: string;
   name: string;
-  description: SpellDescription[];
+  classes: ICharClassDTO[];
+  description: ISpellDescriptionDTO[];
   level: number;
   range: string;
   ritual: boolean;
@@ -10,7 +12,19 @@ export interface ISpell {
   casting_time: string;
 }
 
-export interface SpellDescription {
+export interface ISpellDescription {
   id: number;
   description: string;
 }
+
+export interface ICharClassDTO {
+  id: number;
+  index: string;
+  name: string;
+}
+
+export interface ISpellDescriptionDTO {
+  id: number;
+  description: string;
+}
+

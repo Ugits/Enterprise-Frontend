@@ -1,13 +1,13 @@
-import "./SpellCard.css"; // Importing CSS for styling
-import { SpellDescription } from "../_types/ISpell";
+import "./SpellCard.css"; 
+import { ISpellDescription } from "../_types/ISpell";
 
 interface SpellCardProps {
-  imageSrc: string; // Path to the spell image
-  name: string; // Name of the spell
-  level: number; // Level of the spell
-  type: string; // Type of the spell
-  description: SpellDescription[]; // Array of SpellDescription objects
-  flavorText?: string; // Optional flavor text
+  imageSrc: string;
+  name: string; 
+  level: number;
+  type: string; 
+  description: ISpellDescription[]; 
+  flavorText?: string; 
 }
 
 const SpellCard = (props: SpellCardProps) => {
@@ -28,8 +28,8 @@ const SpellCard = (props: SpellCardProps) => {
         <div className="spell-type">{props.type}</div>
 
         <div className="spell-description">
-          {props.description.map((desc: SpellDescription) => (
-            <p key={desc.id}>{desc.description}</p> // Render each description using its id as the key
+          {props.description.map((desc: ISpellDescription) => (
+            <p key={desc.id}>{desc.description}</p>
           ))}
         </div>
 

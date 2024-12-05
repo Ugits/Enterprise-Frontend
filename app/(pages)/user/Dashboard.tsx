@@ -1,7 +1,10 @@
 "use client";
-import UserCredentials from "../_components/UserCredentials";
-import SpellTable from "../_components/SpellTable"
-const page = () => {
+
+import React from "react";
+import UserCredentials from "../../_components/UserCredentials";
+import SpellTable from "../../_components/SpellTable";
+
+const Dashboard = () => {
   return (
     <main className="min-h-screen flex flex-row">
       <div className="w-1/4 h-[20%] border-r-2 min-h-screen bg-black">
@@ -13,10 +16,10 @@ const page = () => {
         </div>
       </div>
       <div className="w-3/4 flex flex-col items-center bg-slate-800">
-      <SpellTable />
+        <SpellTable />
       </div>
     </main>
   );
 };
 
-export default page;
+export default Dashboard;

@@ -3,7 +3,6 @@
 import { useRouter } from "next/navigation";
 import { useState, useEffect } from "react";
 import LogoutButton from "./LogoutButton";
-import Link from "next/link";
 
 export default function Header() {
   const router = useRouter();

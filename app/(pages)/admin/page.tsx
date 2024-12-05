@@ -1,8 +1,8 @@
 "use client";
 
-import UserCredentials from "../_components/UserCredentials";
-import DeleteUser from "../_components/DeleteUser";
-import BackButton from "../_components/BackButton";
+import UserCredentials from "../../_components/UserCredentials";
+import DeleteUser from "../../_components/DeleteUser";
+import BackButton from "../../_components/BackButton";
 
 const page = () => {
   const role = sessionStorage.getItem("role");

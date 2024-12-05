@@ -9,7 +9,6 @@ export default function LoginForm() {
   const [user, setUser] = useState<IUser>({ username: "", password: "" });
   const [error, setError] = useState("");
   const [loading, setLoading] = useState<boolean>(false);
-
   const router = useRouter();
 
   function handleUserChange(event: React.ChangeEvent<HTMLInputElement>) {
@@ -54,6 +53,7 @@ export default function LoginForm() {
             throw new Error(errData.message);
           });
         }
+        
         return response.json();
       })
       .then((data: IAuthResponse) => {
