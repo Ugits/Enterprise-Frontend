@@ -67,7 +67,7 @@ export default function LoginForm() {
         sessionStorage.setItem("accessToken", token);
         sessionStorage.setItem("role", role);
 
-        role.match("USER") && router.push("/user");
+        role.match("USER") && router.push("/dashboard");
         role.match("ADMIN") && router.push("/admin");
 
         const event = new Event("authChange");

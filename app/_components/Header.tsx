@@ -9,7 +9,6 @@ export default function Header() {
   const [isLoggedIn, setIsLoggedIn] = useState(false);
 
   useEffect(() => {
-   
     const token = sessionStorage.getItem("accessToken");
     setIsLoggedIn(!!token);
 
@@ -26,35 +25,46 @@ export default function Header() {
   }, []);
 
   const handleTitleOnClick = () => {
-    router.push("/")
-  }
+    router.push("/");
+  };
 
   const handleLogin = () => {
     router.push("/sign-in");
+  };
+
+  const handleDashboard = () => {
+    router.push("/dashboard");
   };
 
   return (
     <header className="bg-slate-950 text-gray-100 shadow-2xl">
       <div className="container mx-auto flex items-center py-4 px-6">
         {/* Left Spacer */}
-        <div className="w-1/3"></div>
+        <div className="w-1/4"></div>
 
         {/* Title Centered */}
-        <div className="w-1/3 flex justify-center">
-          <h1 
-          className="text-4xl font-bold m-4 cursor-pointer hover:text-slate-600 text-shadow-lg"
-          onClick={handleTitleOnClick}
-          
+        <div className="w-2/4 flex justify-center">
+          <h1
+            className="text-4xl font-bold m-4 cursor-pointer hover:text-slate-600 text-shadow-lg"
+            onClick={handleTitleOnClick}
           >
             5eSpells
-            </h1>
+          </h1>
         </div>
 
         {/* Buttons on the Right */}
-        <div className="w-1/3 flex justify-end space-x-4">
+        <div className="w-1/4 flex justify-end space-x-4">
           {isLoggedIn ? (
-            <div>
+            <div className="flex flex-row items-end">
+              <button
+                onClick={handleDashboard}
+                className="m-3 bg-green-500 hover:bg-green-600 text-white px-4 py-2 rounded text-shadow-lg"
+              >
+                Dashboard
+              </button>
+              <div className="m-3">
                 <LogoutButton />
+              </div>
             </div>
           ) : (
             <button
