@@ -12,6 +12,7 @@ interface SpellCardProps {
 
 const SpellCard = (props: SpellCardProps) => {
   return (
+    
     <div className="spell-card">
       <div className="spell-card-inner-border">
         <div className="spell-header">

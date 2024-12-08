@@ -34,7 +34,7 @@ export default function Header() {
   };
 
   return (
-    <header className="bg-slate-900 text-gray-100 shadow-2xl">
+    <header className="bg-slate-950 text-gray-100 shadow-2xl">
       <div className="container mx-auto flex items-center py-4 px-6">
         {/* Left Spacer */}
         <div className="w-1/3"></div>

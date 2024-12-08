@@ -25,9 +25,31 @@ export default async function Page() {
     console.error("Error fetching spells:", error);
   }
 
+  let spellNames: string[] = []
+  
+  try {
+    const res = await fetch(`http://localhost:8443/spells/all-names`, {
+      method: "GET",
+      headers: {
+        "Content-Type": "application/json",
+      },
+    });
+
+    if (!res.ok) {
+      console.error("Failed to fetch spell names:", res.status, res.statusText);
+    } else {
+      spellNames = await res.json();
+      console.log("Fetched spellNames:", spellNames);
+    }
+  } catch (error) {
+    console.error("Error fetching spell names:", error);
+  }
+
+
+
   return (
     <StoreProvider initialSpellList={spellList}>
-      <Dashboard />
+      <Dashboard spellNames={spellNames}/>
     </StoreProvider>
   );
 }
