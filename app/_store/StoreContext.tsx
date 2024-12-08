@@ -35,7 +35,7 @@ export function useStore<T>(
 ): T {
   const store = useContext(StoreContext);
   if (!store) {
-    console.error("useStore called outside StoreProvider"); // Debug log
+    console.error("useStore called outside StoreProvider");
     throw new Error("useStore must be used within a StoreProvider");
   }
 

@@ -1,10 +1,7 @@
 "use client";
-
 import SpellCard from "./SpellCard";
 import { ISpell } from "../_types/ISpell";
 import { useStore } from "../_store/StoreContext";
-
-
 
 const SpellTable = () => {
   const spellList = useStore((state) => state.spellList);

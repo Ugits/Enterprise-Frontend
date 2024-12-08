@@ -2,6 +2,7 @@
 import { useState } from "react";
 import { ISignupRequest } from "../_types/ISignupRequest";
 import { ISignupResponse } from "../_types/ISignupResponse";
+import { BASE_URL } from "@/variable.env";
 
 interface SignupFormProps {
   onSignupSuccess: () => void;
@@ -23,7 +24,7 @@ const SignupForm = ({ onSignupSuccess }: SignupFormProps) => {
     setLoading(true);
     setError("");
 
-    fetch("http://localhost:8080/auth/register", {
+    fetch(`${BASE_URL}/auth/register`, {
       method: "POST",
       headers: {
         "Content-Type": "application/json",

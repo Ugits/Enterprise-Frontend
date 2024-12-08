@@ -1,5 +1,6 @@
 "use client";
 
+import { BASE_URL } from "@/variable.env";
 import { useState } from "react";
 
 export default function DeleteUser() {
@@ -26,7 +27,7 @@ export default function DeleteUser() {
       return;
     }
 
-    fetch(`http://localhost:8080/admin/delete-user?username=${encodeURIComponent(username)}`, {
+    fetch(`${BASE_URL}/admin/delete-user?username=${encodeURIComponent(username)}`, {
       method: "DELETE",
       headers: {
         Authorization: `Bearer ${token}`,

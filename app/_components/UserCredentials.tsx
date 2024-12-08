@@ -1,4 +1,5 @@
 "use client";
+import { BASE_URL } from "@/variable.env";
 import { useEffect, useState } from "react";
 
 interface IUserCredentials {
@@ -32,7 +33,7 @@ export default function UserCredentials() {
 
     const timeoutId = setTimeout(() => controller.abort(), timeout);
 
-    fetch("http://localhost:8080/user/credentials", {
+    fetch(`${BASE_URL}/user/credentials`, {
       headers: {
         Authorization: `Bearer ${token}`,
       },

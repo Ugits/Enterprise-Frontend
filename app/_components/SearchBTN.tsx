@@ -1,13 +1,13 @@
 "use client";
-
 import React, {
   useState,
   forwardRef,
   useImperativeHandle,
   useEffect,
 } from "react";
-import SpellCard from "./SpellCard"; // Adjust the path as needed
+import SpellCard from "./SpellCard";
 import { ISpell } from "../_types/ISpell";
+import { API_URL } from "@/variable.env";
 
 interface SearchProps {
   spellName: string;
@@ -34,7 +34,7 @@ const SearchBTN = forwardRef<SearchBTNHandle, SearchProps>(
       setLoading(true);
       setError(null);
 
-      fetch(`http://localhost:8443/spells/${encodeURIComponent(name)}`)
+      fetch(`${API_URL}/${encodeURIComponent(name)}`)
         .then((response) => {
           if (!response.ok) {
             throw new Error("Spell not found");
