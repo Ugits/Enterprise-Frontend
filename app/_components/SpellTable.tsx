@@ -18,15 +18,16 @@ const SpellTable = () => {
       <div
         style={{ display: "flex", flexWrap: "wrap", justifyContent: "center" }}
       >
-        {spellList.map((spell: ISpell) => (
+        {spellList.map((spell: ISpell, index) => (
           <div
+          key={index}
           className="
           -my-6
           -mx-3
           hover:shadow-2xl scale-75 transform hover:scale-105 transition duration-500"
           >
             <SpellCard
-              key={spell.index}
+              key={index}
               imageSrc={`spell-images/${spell.index}.jpg`}
               name={spell.name}
               description={spell.description}

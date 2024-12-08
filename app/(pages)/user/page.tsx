@@ -7,7 +7,8 @@ export default async function Page() {
   let spellList: ISpell[] = [];
 
   try {
-    const res = await fetch(`${API_URL}/sample`, {
+    
+    const res = await fetch(`${API_URL}/samples`, {
       method: "GET",
       headers: {
         "Content-Type": "application/json",
@@ -28,7 +29,8 @@ export default async function Page() {
   let spellNames: string[] = []
   
   try {
-    const res = await fetch(`http://localhost:8443/spells/all-names`, {
+
+    const res = await fetch(`${API_URL}/all-names`, {
       method: "GET",
       headers: {
         "Content-Type": "application/json",

@@ -29,8 +29,8 @@ const SpellCard = (props: SpellCardProps) => {
         <div className="spell-type">{props.type}</div>
 
         <div className="spell-description">
-          {props.description.map((desc: ISpellDescription) => (
-            <p key={desc.id}>{desc.description}</p>
+          {props.description.map((desc: ISpellDescription, index) => (
+            <p key={index}>{desc.description}</p>
           ))}
         </div>
 

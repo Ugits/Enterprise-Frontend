@@ -14,11 +14,17 @@ const Dashboard = ({ spellNames }: DashboardProps) => {
   const [inputSpellName, setInputSpellName] = useState<string>("");
   const [filteredSpellNames, setFilteredSpellNames] = useState<string[]>([]);
   const [showSuggestions, setShowSuggestions] = useState<boolean>(false);
-  const [activeSuggestionIndex, setActiveSuggestionIndex] = useState<number>(-1);
+  const [activeSuggestionIndex, setActiveSuggestionIndex] =
+    useState<number>(-1);
   const suggestionsRef = useRef<HTMLUListElement>(null);
   const inputRef = useRef<HTMLInputElement>(null);
-  const token = sessionStorage.getItem("accessToken")
   const searchBtnRef = useRef<SearchBTNHandle>(null);
+  const [token, setToken] = useState<string | null>(null);
+
+  useEffect(() => {
+    const extractedToken = sessionStorage.getItem("accessToken");
+    setToken(extractedToken);
+  }, []);
 
   useEffect(() => {
     if (inputSpellName) {
@@ -58,7 +64,7 @@ const Dashboard = ({ spellNames }: DashboardProps) => {
     setInputSpellName(suggestion);
     setShowSuggestions(false);
     setActiveSuggestionIndex(-1);
-    
+
     if (searchBtnRef.current) {
       searchBtnRef.current.fetchSpellData(suggestion);
     }
@@ -106,10 +112,10 @@ const Dashboard = ({ spellNames }: DashboardProps) => {
   return (
     <main>
       {token ? (
-        <div className="min-h-screen flex flex-row">
+        <div className="bg-slate-950 min-h-screen flex flex-row">
           {/* Sidebar */}
-          <div className="w-1/4 border-r-2 border-gray-500 bg-slate-900 flex flex-col">
-            <div className="bg-slate-950 p-6 border-b-2 border-gray-500">
+          <div className="w-1/4 border-gray-500 bg-slate-950 flex flex-col">
+            <div className="bg-slate-950 p-6 border-gray-500">
               <UserCredentials />
             </div>
             <div className="p-6 flex flex-col items-center justify-center relative">
@@ -158,7 +164,7 @@ const Dashboard = ({ spellNames }: DashboardProps) => {
             </div>
           </div>
           {/* Main Content */}
-          <div className="w-3/4 flex flex-col items-center bg-slate-800 border-t-2 border-gray-500 p-4">
+          <div className="rounded-tl-full w-3/4 flex flex-col items-center bg-slate-800 border-t-2 border-l-2 border-gray-500 p-4">
             <SpellTable />
           </div>
         </div>
